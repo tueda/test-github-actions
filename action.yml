@@ -11,10 +11,11 @@ inputs:
     required: false
     default: gfortran-latest
 
+env:
+  INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
+
 runs:
   using: composite
-  env:
-    INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
   steps:
     - name: Set up Fortran (Linux)
       run: ${{ github.action_path }}/setup_linux.sh
