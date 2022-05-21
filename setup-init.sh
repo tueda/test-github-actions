@@ -25,7 +25,20 @@ set -o errtrace
 
 # Normalize inputs
 
-case INPUT_ENABLE_CXX in
+case $INPUT_ENABLE_CC in
+  true|True|TRUE|Yes|yes|1)
+    INPUT_ENABLE_CC=:
+    ;;
+  false|False|FALSE|No|no|0)
+    INPUT_ENABLE_CC=false
+    ;;
+  *)
+    echo "enable-cc must be a boolean value: $INPUT_ENABLE_CC">&2
+    exit 1
+    ;;
+esac
+
+case $INPUT_ENABLE_CXX in
   true|True|TRUE|Yes|yes|1)
     INPUT_ENABLE_CXX=:
     ;;
@@ -38,3 +51,15 @@ case INPUT_ENABLE_CXX in
     ;;
 esac
 
+case $INPUT_ENABLE_GCOV in
+  true|True|TRUE|Yes|yes|1)
+    INPUT_ENABLE_GCOV=:
+    ;;
+  false|False|FALSE|No|no|0)
+    INPUT_ENABLE_GCOV=false
+    ;;
+  *)
+    echo "enable-gcov must be a boolean value: $INPUT_ENABLE_GCOV">&2
+    exit 1
+    ;;
+esac

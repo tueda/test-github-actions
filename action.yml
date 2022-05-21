@@ -10,8 +10,16 @@ inputs:
     description: Fortran compiler to install
     required: false
     default: gfortran-latest
+  enable-cc:
+    description: Set up C compiler
+    required: false
+    default: false
   enable-cxx:
-    description: Install C++ compiler
+    description: Set up C++ compiler
+    required: false
+    default: false
+  enable-gcov:
+    description: Set up gcov
     required: false
     default: false
 
@@ -24,7 +32,9 @@ runs:
       if: ${{ runner.os == 'Linux' }}
       env:
         INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
+        INPUT_ENABLE_CC: ${{ inputs.enable-cc }}
         INPUT_ENABLE_CXX: ${{ inputs.enable-cxx }}
+        INPUT_ENABLE_GCOV: ${{ inputs.enable-gcov }}
 
     - name: Set up Fortran (macOS)
       run: ${{ github.action_path }}/setup-macos.sh
@@ -32,7 +42,9 @@ runs:
       if: ${{ runner.os == 'macOS' }}
       env:
         INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
+        INPUT_ENABLE_CC: ${{ inputs.enable-cc }}
         INPUT_ENABLE_CXX: ${{ inputs.enable-cxx }}
+        INPUT_ENABLE_GCOV: ${{ inputs.enable-gcov }}
 
     - name: Set up Fortran (Windows)
       run: ${{ github.action_path }}/setup-windows.sh
@@ -40,4 +52,6 @@ runs:
       if: ${{ runner.os == 'Windows' }}
       env:
         INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
+        INPUT_ENABLE_CC: ${{ inputs.enable-cc }}
         INPUT_ENABLE_CXX: ${{ inputs.enable-cxx }}
+        INPUT_ENABLE_GCOV: ${{ inputs.enable-gcov }}

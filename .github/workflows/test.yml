@@ -51,9 +51,11 @@ jobs:
           fortran-compiler: ${{ matrix.fortran-compiler }}
 
       - name: Check installed executables
-      - run: |
+        run: |
           echo FC=$FC
+          echo CC=$CC
+          echo CXX=$CXX
           echo FPM_FC=$FPM_FC
+          echo FPM_CC=$FPM_CC
           echo GCOV=$GCOV
           $FC --version
-          $GCOV --version

@@ -51,17 +51,40 @@ case $OS_VERSION:$INPUT_FORTRAN_COMPILER in
   *:gfortran-[5-9]|\
   *:gfortran-[1-9][0-9])
     sudo apt-get update -qq
-    sudo apt-get install -y -qq "$INPUT_FORTRAN_COMPILER"
+    if $INPUT_ENABLE_CXX; then
+      sudo apt-get install -y -qq "$INPUT_FORTRAN_COMPILER" "g++-${INPUT_FORTRAN_COMPILER##*-}"
+    else
+      sudo apt-get install -y -qq "$INPUT_FORTRAN_COMPILER"
+    fi
     FC=$INPUT_FORTRAN_COMPILER
     CC=gcc-${FC##*-}
+    if $INPUT_ENABLE_CXX; then
+      CXX=g++-${FC##*-}
+    fi
     GCOV=gcov-${FC##*-}
     ;;
 esac
 
 command -v "$FC"
-command -v "$CC"
-command -v "$GCOV"
+if [[ -n "$CC" ]]; then
+  command -v "$CC"
+fi
+if [[ -n "$CXX" ]]; then
+  command -v "$CXX"
+fi
+if [[ -n "$GCOV" ]]; then
+  command -v "$GCOV"
+fi
 
 echo "FC=$FC" >>"$GITHUB_ENV"
 echo "FPM_FC=$FC" >>"$GITHUB_ENV"
-echo "GCOV=$GCOV" >>"$GITHUB_ENV"
+if [[ -n "$CC" ]]; then
+  echo "CC=$CC" >>"$GITHUB_ENV"
+  echo "FPM_CC=$CC" >>"$GITHUB_ENV"
+fi
+if [[ -n "$CXX" ]]; then
+  echo "CXX=$CXX" >>"$GITHUB_ENV"
+fi
+if [[ -n "$GCOV" ]]; then
+  echo "GCOV=$GCOV" >>"$GITHUB_ENV"
+fi
