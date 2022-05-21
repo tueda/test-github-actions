@@ -50,18 +50,17 @@ case $OS_VERSION:$INPUT_FORTRAN_COMPILER in
   *:gfortran-4.[1-9]|\
   *:gfortran-[5-9]|\
   *:gfortran-[1-9][0-9])
-    sudo apt-get update -qq
-    if $INPUT_ENABLE_CXX; then
-      sudo apt-get install -y -qq "$INPUT_FORTRAN_COMPILER" "g++-${INPUT_FORTRAN_COMPILER##*-}"
-    else
-      sudo apt-get install -y -qq "$INPUT_FORTRAN_COMPILER"
-    fi
     FC=$INPUT_FORTRAN_COMPILER
     CC=gcc-${FC##*-}
+    GCOV=gcov-${FC##*-}
+    sudo apt-get update -qq
     if $INPUT_ENABLE_CXX; then
       CXX=g++-${FC##*-}
+      sudo apt-get install -y -qq "$FC" "$CXX"
+    else
+      CXX=
+      sudo apt-get install -y -qq "$FC"
     fi
-    GCOV=gcov-${FC##*-}
     ;;
 esac
 
