@@ -21,7 +21,7 @@ function _errexit() {
 trap '_errexit' ERR
 set -o errtrace
 
-# Normalize inputs
+# Normalize inputs.
 
 case $INPUT_ENABLE_CC in
   true|True|TRUE|Yes|yes|1)
@@ -62,9 +62,13 @@ case $INPUT_ENABLE_GCOV in
     ;;
 esac
 
-# variables
+# Variables for executables.
 
+# shellcheck disable=SC2034
 FC=
+# shellcheck disable=SC2034
 CC=
+# shellcheck disable=SC2034
 CXX=
+# shellcheck disable=SC2034
 GCOV=
