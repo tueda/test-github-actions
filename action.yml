@@ -1,0 +1,19 @@
+name: 'Setup Fortran'
+description: Install a Fortran compiler
+
+branding:
+  icon: square
+  color: yellow
+
+inputs:
+  fortran-compiler:
+    description: Fortran compiler to install
+    required: false
+    default: gfortran-latest
+
+runs:
+  using: composite
+  steps:
+    - name: set up Fortran
+      run: ${{ github.action_path }}/setup.sh
+      shell: bash
