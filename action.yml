@@ -27,7 +27,7 @@ runs:
   using: composite
   steps:
     - name: Set up Fortran (Linux)
-      run: ${{ github.action_path }}/setup-linux.sh
+      run: ${{ github.action_path }}/scripts/setup-linux.sh
       shell: bash
       if: ${{ runner.os == 'Linux' }}
       env:
@@ -37,7 +37,7 @@ runs:
         INPUT_ENABLE_GCOV: ${{ inputs.enable-gcov }}
 
     - name: Set up Fortran (macOS)
-      run: ${{ github.action_path }}/setup-macos.sh
+      run: ${{ github.action_path }}/scripts/setup-macos.sh
       shell: bash
       if: ${{ runner.os == 'macOS' }}
       env:
@@ -47,7 +47,7 @@ runs:
         INPUT_ENABLE_GCOV: ${{ inputs.enable-gcov }}
 
     - name: Set up Fortran (Windows)
-      run: ${{ github.action_path }}/setup-windows.sh
+      run: ${{ github.action_path }}/scripts/setup-windows.sh
       shell: bash
       if: ${{ runner.os == 'Windows' }}
       env:

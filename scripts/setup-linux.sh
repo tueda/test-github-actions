@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$GITHUB_ACTION_PATH"/_setup-init.sh
+. "$GITHUB_ACTION_PATH"/scripts/_setup-init.sh
 
 OS_VERSION=$(lsb_release -rs)
 
@@ -63,4 +63,4 @@ case $OS_VERSION:$INPUT_FORTRAN_COMPILER in
     ;;
 esac
 
-. "$GITHUB_ACTION_PATH"/_setup-fin.sh
+. "$GITHUB_ACTION_PATH"/scripts/_setup-fin.sh
