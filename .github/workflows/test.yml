@@ -39,13 +39,40 @@ jobs:
           # - { os: ubuntu-22.04, fortran-compiler: default, enable-cc: true, enable-cxx: true, enable-gcov: true }
           # - { os: ubuntu-22.04, fortran-compiler: latest, enable-cc: true, enable-cxx: true, enable-gcov: true }
 
-          - { os: macos-10.15, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          # - { os: macos-10.15, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
           # - { os: macos-10.15, fortran-compiler: gfortran-10, enable-cc: true, enable-cxx: true, enable-gcov: true }
           # - { os: macos-10.15, fortran-compiler: gfortran-11, enable-cc: true, enable-cxx: true, enable-gcov: true }
-          - { os: macos-11, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          # - { os: macos-11, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
           # - { os: macos-11, fortran-compiler: gfortran-10, enable-cc: true, enable-cxx: true, enable-gcov: true }
           # - { os: macos-11, fortran-compiler: gfortran-11, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          # - { os: macos-12, fortran-compiler: gfortran-11, enable-cc: true, enable-cxx: true, enable-gcov: true }
+
+          - { os: macos-10.15, fortran-compiler: gfortran-5, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-10.15, fortran-compiler: gfortran-6, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-10.15, fortran-compiler: gfortran-7, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-10.15, fortran-compiler: gfortran-8, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-10.15, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-10.15, fortran-compiler: gfortran-10, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-10.15, fortran-compiler: gfortran-11, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-10.15, fortran-compiler: gfortran-12, enable-cc: true, enable-cxx: true, enable-gcov: true }
+
+          - { os: macos-11, fortran-compiler: gfortran-5, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-11, fortran-compiler: gfortran-6, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-11, fortran-compiler: gfortran-7, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-11, fortran-compiler: gfortran-8, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-11, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-11, fortran-compiler: gfortran-10, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-11, fortran-compiler: gfortran-11, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-11, fortran-compiler: gfortran-12, enable-cc: true, enable-cxx: true, enable-gcov: true }
+
+          - { os: macos-12, fortran-compiler: gfortran-5, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-12, fortran-compiler: gfortran-6, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-12, fortran-compiler: gfortran-7, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-12, fortran-compiler: gfortran-8, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-12, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-12, fortran-compiler: gfortran-10, enable-cc: true, enable-cxx: true, enable-gcov: true }
           - { os: macos-12, fortran-compiler: gfortran-11, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: macos-12, fortran-compiler: gfortran-12, enable-cc: true, enable-cxx: true, enable-gcov: true }
 
     runs-on: ${{ matrix.os }}
 
