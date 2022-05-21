@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$GITHUB_ACTION_PATH"/setup-init.sh
+. "$GITHUB_ACTION_PATH"/_setup-init.sh
 
 OS_VERSION=$(lsb_release -rs)
 
@@ -58,32 +58,9 @@ case $OS_VERSION:$INPUT_FORTRAN_COMPILER in
       CXX=g++-${FC##*-}
       sudo apt-get install -y -qq "$FC" "$CXX"
     else
-      CXX=
       sudo apt-get install -y -qq "$FC"
     fi
     ;;
 esac
 
-command -v "$FC"
-if [[ -n "$CC" ]]; then
-  command -v "$CC"
-fi
-if [[ -n "$CXX" ]]; then
-  command -v "$CXX"
-fi
-if [[ -n "$GCOV" ]]; then
-  command -v "$GCOV"
-fi
-
-echo "FC=$FC" >>"$GITHUB_ENV"
-echo "FPM_FC=$FC" >>"$GITHUB_ENV"
-if [[ -n "$CC" ]]; then
-  echo "CC=$CC" >>"$GITHUB_ENV"
-  echo "FPM_CC=$CC" >>"$GITHUB_ENV"
-fi
-if [[ -n "$CXX" ]]; then
-  echo "CXX=$CXX" >>"$GITHUB_ENV"
-fi
-if [[ -n "$GCOV" ]]; then
-  echo "GCOV=$GCOV" >>"$GITHUB_ENV"
-fi
+. "$GITHUB_ACTION_PATH"/_setup-fin.sh

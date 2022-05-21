@@ -1,5 +1,3 @@
-#!/bin/bash
-
 set -eu
 set -o pipefail
 
@@ -63,3 +61,10 @@ case $INPUT_ENABLE_GCOV in
     exit 1
     ;;
 esac
+
+# variables
+
+FC=
+CC=
+CXX=
+GCOV=
