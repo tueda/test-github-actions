@@ -3,9 +3,9 @@ name: Test
 on:
   push:
   pull_request:
-  schedule:
-    - cron: 0 1 * * 0 # weekly
-  workflow_dispatch:
+  # schedule:
+  #   - cron: 0 1 * * 0 # weekly
+  # workflow_dispatch:
 
 jobs:
   test:
@@ -21,48 +21,39 @@ jobs:
           - { os: ubuntu-18.04, fortran-compiler: gfortran-9 }
           - { os: ubuntu-18.04, fortran-compiler: gfortran-10 }
           - { os: ubuntu-18.04, fortran-compiler: gfortran-11 }
-          - { os: ubuntu-18.04, fortran-compiler: gfortran-12 }
+          - { os: ubuntu-18.04, fortran-compiler: default }
+          - { os: ubuntu-18.04, fortran-compiler: latest }
 
-          - { os: ubuntu-20.04, fortran-compiler: gfortran-4.8 }
-          - { os: ubuntu-20.04, fortran-compiler: gfortran-5 }
-          - { os: ubuntu-20.04, fortran-compiler: gfortran-6 }
           - { os: ubuntu-20.04, fortran-compiler: gfortran-7 }
           - { os: ubuntu-20.04, fortran-compiler: gfortran-8 }
           - { os: ubuntu-20.04, fortran-compiler: gfortran-9 }
           - { os: ubuntu-20.04, fortran-compiler: gfortran-10 }
           - { os: ubuntu-20.04, fortran-compiler: gfortran-11 }
-          - { os: ubuntu-20.04, fortran-compiler: gfortran-12 }
+          - { os: ubuntu-20.04, fortran-compiler: default }
+          - { os: ubuntu-20.04, fortran-compiler: latest }
 
-          - { os: ubuntu-22.04, fortran-compiler: gfortran-4.8 }
-          - { os: ubuntu-22.04, fortran-compiler: gfortran-5 }
-          - { os: ubuntu-22.04, fortran-compiler: gfortran-6 }
-          - { os: ubuntu-22.04, fortran-compiler: gfortran-7 }
-          - { os: ubuntu-22.04, fortran-compiler: gfortran-8 }
           - { os: ubuntu-22.04, fortran-compiler: gfortran-9 }
           - { os: ubuntu-22.04, fortran-compiler: gfortran-10 }
           - { os: ubuntu-22.04, fortran-compiler: gfortran-11 }
           - { os: ubuntu-22.04, fortran-compiler: gfortran-12 }
+          - { os: ubuntu-22.04, fortran-compiler: default }
+          - { os: ubuntu-22.04, fortran-compiler: latest }
 
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
-      - run: |
-          type gfortran-4.8 || :
-          type gfortran-5 || :
-          type gfortran-6 || :
-          type gfortran-7 || :
-          type gfortran-8 || :
-          type gfortran-9 || :
-          type gfortran-10 || :
-          type gfortran-11 || :
-          type gfortran-12 || :
-
-      - uses: ./
+      - name: Set up Fortran
+        uses: ./
         with:
           fortran-compiler: ${{ matrix.fortran-compiler }}
 
+      - name: Check installed executables
       - run: |
           echo FC=$FC
           echo FPM_FC=$FPM_FC
+          echo GCOV=$GCOV
+          $FC --version
+          $GCOV --version

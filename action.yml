@@ -1,5 +1,5 @@
 name: 'Setup Fortran'
-description: Install a Fortran compiler
+description: Install Fortran compiler
 
 branding:
   icon: square
@@ -10,23 +10,34 @@ inputs:
     description: Fortran compiler to install
     required: false
     default: gfortran-latest
+  enable-cxx:
+    description: Install C++ compiler
+    required: false
+    default: false
 
 runs:
   using: composite
   steps:
     - name: Set up Fortran (Linux)
-      run: ${{ github.action_path }}/setup_linux.sh
+      run: ${{ github.action_path }}/setup-linux.sh
       shell: bash
       if: ${{ runner.os == 'Linux' }}
       env:
         INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
+        INPUT_ENABLE_CXX: ${{ inputs.enable-cxx }}
 
     - name: Set up Fortran (macOS)
-      run: ${{ github.action_path }}/setup_macos.sh
+      run: ${{ github.action_path }}/setup-macos.sh
       shell: bash
       if: ${{ runner.os == 'macOS' }}
+      env:
+        INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
+        INPUT_ENABLE_CXX: ${{ inputs.enable-cxx }}
 
     - name: Set up Fortran (Windows)
-      run: ${{ github.action_path }}/setup_windows.sh
+      run: ${{ github.action_path }}/setup-windows.sh
       shell: bash
       if: ${{ runner.os == 'Windows' }}
+      env:
+        INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
+        INPUT_ENABLE_CXX: ${{ inputs.enable-cxx }}

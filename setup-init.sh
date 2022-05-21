@@ -22,3 +22,19 @@ function _errexit() {
 }
 trap '_errexit' ERR
 set -o errtrace
+
+# Normalize inputs
+
+case INPUT_ENABLE_CXX in
+  true|True|TRUE|Yes|yes|1)
+    INPUT_ENABLE_CXX=:
+    ;;
+  false|False|FALSE|No|no|0)
+    INPUT_ENABLE_CXX=false
+    ;;
+  *)
+    echo "enable-cxx must be a boolean value: $INPUT_ENABLE_CXX">&2
+    exit 1
+    ;;
+esac
+
