@@ -1,3 +1,7 @@
+# shellcheck shell=bash
+
+# Check executables.
+
 command -v "$FC"
 $FC --version
 if [[ -n "$CC" ]]; then
@@ -12,6 +16,8 @@ if [[ -n "$GCOV" ]]; then
   command -v "$GCOV"
   $GCOV --version
 fi
+
+# Export environment variables.
 
 echo "FC=$FC" >>"$GITHUB_ENV"
 echo "FPM_FC=$FC" >>"$GITHUB_ENV"

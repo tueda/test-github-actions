@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 set -eu
 set -o pipefail
 
@@ -23,44 +25,24 @@ set -o errtrace
 
 # Normalize inputs.
 
-case $INPUT_ENABLE_CC in
-  true|True|TRUE|Yes|yes|1)
-    INPUT_ENABLE_CC=:
-    ;;
-  false|False|FALSE|No|no|0)
-    INPUT_ENABLE_CC=false
-    ;;
-  *)
-    echo "enable-cc must be a boolean value: $INPUT_ENABLE_CC">&2
-    exit 1
-    ;;
-esac
+function normalize_bool() {
+  case $1 in
+    TRUE|True|true|T|YES|Yes|yes|Y|y|ON|On|on|1)
+      echo :
+      ;;
+    FALSE|False|false|F|NO|No|no|N|n|OFF|Off|off|0)
+      echo false
+      ;;
+    *)
+      echo "Error: $2 must be a boolean value: $1">&2
+      exit 1
+      ;;
+  esac
+}
 
-case $INPUT_ENABLE_CXX in
-  true|True|TRUE|Yes|yes|1)
-    INPUT_ENABLE_CXX=:
-    ;;
-  false|False|FALSE|No|no|0)
-    INPUT_ENABLE_CXX=false
-    ;;
-  *)
-    echo "enable-cxx must be a boolean value: $INPUT_ENABLE_CXX">&2
-    exit 1
-    ;;
-esac
-
-case $INPUT_ENABLE_GCOV in
-  true|True|TRUE|Yes|yes|1)
-    INPUT_ENABLE_GCOV=:
-    ;;
-  false|False|FALSE|No|no|0)
-    INPUT_ENABLE_GCOV=false
-    ;;
-  *)
-    echo "enable-gcov must be a boolean value: $INPUT_ENABLE_GCOV">&2
-    exit 1
-    ;;
-esac
+INPUT_ENABLE_CC=$(normalize_bool "$INPUT_ENABLE_CC" enable-cc)
+INPUT_ENABLE_CXX=$(normalize_bool "$INPUT_ENABLE_CXX" enable-cxx)
+INPUT_ENABLE_GCOV=$(normalize_bool "$INPUT_ENABLE_GCOV" enable-gcov)
 
 # Variables for executables.
 
