@@ -15,5 +15,5 @@ runs:
   using: composite
   steps:
     - name: set up Fortran
-      run: ${{ github.action_path }}/setup.sh
+      run: ${{ github.action_path }}/setup.sh "${{ inputs.fortran-compiler }}"
       shell: bash
