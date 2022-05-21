@@ -23,15 +23,15 @@ jobs:
       - uses: actions/checkout@v3
 
       - run: |
-          type gfortran-4.8
-          type gfortran-5
-          type gfortran-6
-          type gfortran-7
-          type gfortran-8
-          type gfortran-9
-          type gfortran-10
-          type gfortran-11
-          type gfortran-12
+          type gfortran-4.8 || :
+          type gfortran-5 || :
+          type gfortran-6 || :
+          type gfortran-7 || :
+          type gfortran-8 || :
+          type gfortran-9 || :
+          type gfortran-10 || :
+          type gfortran-11 || :
+          type gfortran-12 || :
 
       - uses: ./
         with:
