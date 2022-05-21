@@ -13,31 +13,31 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { os: ubuntu-18.04, fortran-compiler: gfortran-4.8 }
-          - { os: ubuntu-18.04, fortran-compiler: gfortran-5 }
-          - { os: ubuntu-18.04, fortran-compiler: gfortran-6 }
-          - { os: ubuntu-18.04, fortran-compiler: gfortran-7 }
-          - { os: ubuntu-18.04, fortran-compiler: gfortran-8 }
-          - { os: ubuntu-18.04, fortran-compiler: gfortran-9 }
-          - { os: ubuntu-18.04, fortran-compiler: gfortran-10 }
-          - { os: ubuntu-18.04, fortran-compiler: gfortran-11 }
-          - { os: ubuntu-18.04, fortran-compiler: default }
-          - { os: ubuntu-18.04, fortran-compiler: latest }
+          - { os: ubuntu-18.04, fortran-compiler: gfortran-4.8, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-18.04, fortran-compiler: gfortran-5, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-18.04, fortran-compiler: gfortran-6, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-18.04, fortran-compiler: gfortran-7, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-18.04, fortran-compiler: gfortran-8, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-18.04, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-18.04, fortran-compiler: gfortran-10, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-18.04, fortran-compiler: gfortran-11, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-18.04, fortran-compiler: default, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-18.04, fortran-compiler: latest, enable-cc: true, enable-cxx: true, enable-gcov: true }
 
-          - { os: ubuntu-20.04, fortran-compiler: gfortran-7 }
-          - { os: ubuntu-20.04, fortran-compiler: gfortran-8 }
-          - { os: ubuntu-20.04, fortran-compiler: gfortran-9 }
-          - { os: ubuntu-20.04, fortran-compiler: gfortran-10 }
-          - { os: ubuntu-20.04, fortran-compiler: gfortran-11 }
-          - { os: ubuntu-20.04, fortran-compiler: default }
-          - { os: ubuntu-20.04, fortran-compiler: latest }
+          - { os: ubuntu-20.04, fortran-compiler: gfortran-7, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-20.04, fortran-compiler: gfortran-8, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-20.04, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-20.04, fortran-compiler: gfortran-10, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-20.04, fortran-compiler: gfortran-11, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-20.04, fortran-compiler: default, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-20.04, fortran-compiler: latest, enable-cc: true, enable-cxx: true, enable-gcov: true }
 
-          - { os: ubuntu-22.04, fortran-compiler: gfortran-9 }
-          - { os: ubuntu-22.04, fortran-compiler: gfortran-10 }
-          - { os: ubuntu-22.04, fortran-compiler: gfortran-11 }
-          - { os: ubuntu-22.04, fortran-compiler: gfortran-12 }
-          - { os: ubuntu-22.04, fortran-compiler: default }
-          - { os: ubuntu-22.04, fortran-compiler: latest }
+          - { os: ubuntu-22.04, fortran-compiler: gfortran-9, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-22.04, fortran-compiler: gfortran-10, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-22.04, fortran-compiler: gfortran-11, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-22.04, fortran-compiler: gfortran-12, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-22.04, fortran-compiler: default, enable-cc: true, enable-cxx: true, enable-gcov: true }
+          - { os: ubuntu-22.04, fortran-compiler: latest, enable-cc: true, enable-cxx: true, enable-gcov: true }
 
     runs-on: ${{ matrix.os }}
 
@@ -49,6 +49,9 @@ jobs:
         uses: ./
         with:
           fortran-compiler: ${{ matrix.fortran-compiler }}
+          enable-cc: ${{ matrix.enable-cc }}
+          enable-cxx: ${{ matrix.enable-cxx }}
+          enable-gcov: ${{ matrix.enable-gcov }}
 
       - name: Check installed executables
         run: |
