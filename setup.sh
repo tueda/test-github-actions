@@ -24,3 +24,4 @@ trap '_errexit' ERR
 set -o errtrace
 
 echo Hello world!
+echo $INPUT_FORTRAN_COMPILER
