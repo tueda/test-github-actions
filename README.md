@@ -1,6 +1,6 @@
 # setup-fortran
 
-This action installs Fortran and adequately sets environment variables
+This action installs a Fortran compiler and adequately sets environment variables
 `FC`, `CC`, `CXX`, `GCOV`, `FPM_FC` and `FPM_CC`.
 
 
