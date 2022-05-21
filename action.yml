@@ -19,14 +19,14 @@ runs:
     - name: Set up Fortran (Linux)
       run: ${{ github.action_path }}/setup_linux.sh
       shell: bash
-      if: runner.os == Linux
+      if: ${{ runner.os == 'Linux' }}
 
     - name: Set up Fortran (macOS)
       run: ${{ github.action_path }}/setup_macos.sh
       shell: bash
-      if: runner.os == macOS
+      if: ${{ runner.os == 'macOS' }}
 
     - name: Set up Fortran (Windows)
       run: ${{ github.action_path }}/setup_windows.sh
       shell: bash
-      if: runner.os == Windows
+      if: ${{ runner.os == 'Windows' }}
