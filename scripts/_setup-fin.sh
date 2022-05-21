@@ -2,6 +2,34 @@
 
 # Check executables.
 
+if command -v "$FC"; then :;else
+  echo "Error: Fortran compiler not installed: fortran-compiler=$INPUT_FORTRAN_COMPILER" >&2
+  exit 1
+fi
+
+if $INPUT_ENABLE_CC; then
+  if command -v "$CC"; then :;else
+    echo "Error: C compiler not installed: fortran-compiler=$INPUT_FORTRAN_COMPILER" >&2
+    exit 1
+  fi
+fi
+
+if $INPUT_ENABLE_CXX; then
+  if command -v "$CXX"; then :;else
+    echo "Error: C++ compiler not installed: fortran-compiler=$INPUT_FORTRAN_COMPILER" >&2
+    exit 1
+  fi
+fi
+
+if $INPUT_ENABLE_GCOV; then
+  if command -v "$GCOV"; then :;else
+    echo "Error: gcov not installed: fortran-compiler=$INPUT_FORTRAN_COMPILER" >&2
+    exit 1
+  fi
+fi
+
+# Print executable paths and versions.
+
 command -v "$FC"
 $FC --version
 if [[ -n "$CC" ]]; then

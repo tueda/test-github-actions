@@ -34,7 +34,7 @@ function normalize_bool() {
       echo false
       ;;
     *)
-      echo "Error: $2 must be a boolean value: $1">&2
+      echo "Error: $2 must be a boolean value: $2=$1">&2
       exit 1
       ;;
   esac
