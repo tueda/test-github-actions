@@ -11,9 +11,6 @@ inputs:
     required: false
     default: gfortran-latest
 
-env:
-  INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
-
 runs:
   using: composite
   steps:
@@ -21,6 +18,8 @@ runs:
       run: ${{ github.action_path }}/setup_linux.sh
       shell: bash
       if: ${{ runner.os == 'Linux' }}
+      env:
+        INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
 
     - name: Set up Fortran (macOS)
       run: ${{ github.action_path }}/setup_macos.sh
