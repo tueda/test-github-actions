@@ -43,19 +43,21 @@ case $OS_VERSION:$INPUT_FORTRAN_COMPILER in
   22.04:gfortran-11)
     # pre-installed
     FC=$INPUT_FORTRAN_COMPILER
-    CC=gcc-${FC##*-}
-    CXX=g++-${FC##*-}
-    GCOV=gcov-${FC##*-}
+    GCC_V=${FC##*-}
+    CC=gcc-$GCC_V
+    CXX=g++-$GCC_V
+    GCOV=gcov-$GCC_V
     ;;
   *:gfortran-4.[1-9]|\
   *:gfortran-[5-9]|\
   *:gfortran-[1-9][0-9])
     FC=$INPUT_FORTRAN_COMPILER
-    CC=gcc-${FC##*-}
-    GCOV=gcov-${FC##*-}
+    GCC_V=${FC##*-}
+    CC=gcc-$GCC_V
+    GCOV=gcov-$GCC_V
     sudo apt-get update -qq
     if $INPUT_ENABLE_CXX; then
-      CXX=g++-${FC##*-}
+      CXX=g++-$GCC_V
       sudo apt-get install -y -qq "$FC" "$CXX"
     else
       sudo apt-get install -y -qq "$FC"
