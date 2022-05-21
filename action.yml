@@ -13,7 +13,20 @@ inputs:
 
 runs:
   using: composite
+  env:
+    INPUT_FORTRAN_COMPILER: ${{ inputs.fortran-compiler }}
   steps:
-    - name: set up Fortran
-      run: ${{ github.action_path }}/setup.sh "${{ inputs.fortran-compiler }}"
+    - name: Set up Fortran (Linux)
+      run: ${{ github.action_path }}/setup_linux.sh
       shell: bash
+      if: runner.os == Linux
+
+    - name: Set up Fortran (macOS)
+      run: ${{ github.action_path }}/setup_macos.sh
+      shell: bash
+      if: runner.os == macOS
+
+    - name: Set up Fortran (Windows)
+      run: ${{ github.action_path }}/setup_windows.sh
+      shell: bash
+      if: runner.os == Windows

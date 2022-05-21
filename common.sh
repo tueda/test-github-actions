@@ -22,6 +22,3 @@ function _errexit() {
 }
 trap '_errexit' ERR
 set -o errtrace
-
-echo Hello world!
-echo $1
